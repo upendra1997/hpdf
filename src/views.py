@@ -44,6 +44,8 @@ def setCookie():
 
 @app.route('/getcookie')
 def getCookie():
+    if "name" not in session.keys() or "age" not in session.keys():
+        return "No Cookie set please set cookies by clicking <a href='/setcookie'>here</a>"
     return "Name: "+session["name"]+"<br> Age: "+str(session["age"])
 
 
