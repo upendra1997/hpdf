@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SignUp</title>
+</head>
+<body>
+    <form name="Signup" method="post" action="signup">
+        <input name="username" placeholder="Username" type="text">
+        <input name="password1" placeholder="Password" type="password">
+        <input name="password2" placeholder="Re-Enter Password" type="password">
+        <input type="submit" value="Signup">
+        <ul>
+        {% for i in get_flashed_messages() %}
+        <li>{{  message }} <li>
+        {% endfor %}
+        </li>
+        </ul>
+    </form>
+</body>
+</html>
