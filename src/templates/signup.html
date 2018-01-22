@@ -12,9 +12,8 @@
         <input type="submit" value="Signup">
         <ul>
         {% for i in get_flashed_messages() %}
-        <li>{{  message }} <li>
+        <li>{{ i }} </li>
         {% endfor %}
-        </li>
         </ul>
     </form>
 </body>

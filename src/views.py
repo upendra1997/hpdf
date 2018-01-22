@@ -77,41 +77,42 @@ def signup():
     if(request.method=='GET'):
         return render_template('signup.html')
     else:
-        if len(request.form['password1'])<8:
-            flash("Password Lenght must be above 8.")
-            if request.form['password1']==request.form['password2']:
-                # This is the url to which the query is made
-                url = "https://auth.diagnostician94.hasura-app.io/v1/admin/create-user"
+        if request.form['password1']==request.form['password2']:
+            # This is the url to which the query is made
+            url = "https://auth.diagnostician94.hasura-app.io/v1/admin/create-user"
 
-                # This is the json payload for the query
-                requestPayload = {
-                    "provider": "username",
-                    "data": {
-                        "username": request.form["username"],
-                        "password": request.form["password1"]
-                    },
-                    "roles": [
-                        "user"
-                    ],
-                    "is_active": True
-                }
+            # This is the json payload for the query
+            requestPayload = {
+                "provider": "username",
+                "data": {
+                    "username": request.form["username"],
+                    "password": request.form["password1"]
+                },
+                "roles": [
+                    "user"
+                ],
+                "is_active": True
+            }
+            print("username", request.form["username"],"password", request.form["password1"])
+            # Setting headers
+            headers = {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer e665801b3a45b92a9d7581e334459dae6b1e72d20a21a28f"
+            }
 
-                # Setting headers
-                headers = {
-                    "Content-Type": "application/json",
-                    "Authorization": "Bearer e665801b3a45b92a9d7581e334459dae6b1e72d20a21a28f"
-                }
+            # Make the query and store response in resp
+            resp = requests.request("POST", url, data=json.dumps(requestPayload), headers=headers)
 
-                # Make the query and store response in resp
-                resp = requests.request("POST", url, data=json.dumps(requestPayload), headers=headers)
-
-                # resp.content contains the json response.
-                print(resp.content)
-
-            flash("User "+ request.form["username"] +" Signed up succesfully","green")
-
+            # resp.content contains the json response.
+            print(resp.content)
+            j = json.loads(resp.content)
+            if "message" in j.keys():
+                flash(j["message"])
+            else:
+                flash("User successfully created.")
+        else:
+            flash("password did not match")
     return render_template('signup.html')
-    pass
 
-
+# from src import app
 # @app.route('/create/<table_name>/')

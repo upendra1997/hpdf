@@ -29,6 +29,6 @@ templates
 | /html         | Html Page|
 | /image        | Image |
 | /input        | Give the input|
-
+| /signup       |  Signup page to register |
 ---
 
