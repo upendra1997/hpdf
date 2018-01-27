@@ -146,7 +146,7 @@ def chatbot():
                 "order_by": [
                     {
                         "column": array[1],
-                        "order": "asc"
+                        "order": "desc"
                     }
                 ]
             }
@@ -155,7 +155,7 @@ def chatbot():
         if "error" in resp.json():
             return "Error: "+resp.json()["error"]
         else:
-            cont = resp.json()[:num]
+            cont = resp.json()[len(resp.json())-num:]
             return str(cont)
     return "Not a valid Command."
 
