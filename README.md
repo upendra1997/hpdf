@@ -30,5 +30,8 @@ templates
 | /image        | Image |
 | /input        | Give the input|
 | /signup       |  Signup page to register |
+| /chatbot      |  Slack command. upendra.upadhyay.97@gmail.com (Email me to get link)   |
+| /chatbot num users | slack command to get number of users registered in Hasura auth |
+| /chatbot  <table_name> <column_name> <num_rows> | returns last <num_rows> rows from <table_name> when sorted by <column_name> in descending order (DESC)  |
 ---
 
